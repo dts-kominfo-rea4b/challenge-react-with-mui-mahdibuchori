@@ -27,36 +27,30 @@ const Contact = ({ data }) => {
         <>
         <Paper style={{maxHeight: "78vh", overflow: 'auto'}}>
                 <List sx={{ width: '100%', bgcolor: '#cfe8fc' }}>
-                    {data.map((d) => {
-                        return (
-                            <div>
-                                <ListItem alignItems="flex-start">
-                                    <ListItemAvatar>
-                                        <Avatar alt={d.name} src={d.photo} />
-                                    </ListItemAvatar>
-                                    <ListItemText
-                                        primary={d.name}
-                                        secondary={
-                                            <React.Fragment>
-                                            <Typography
-                                                sx={{ display: 'inline' }}
-                                                component="span"
-                                                variant="body2"
-                                                color="text.primary"
-                                            >
-                                            </Typography>
-                                            {d.phone}
-                                            <br/>
-                                            {d.email}
-                                            </React.Fragment>
-                                        }
-                                    />
-                                </ListItem>
-                                <Divider variant="inset" component="li" />
-                            </div>
+                <ListItem alignItems="flex-start">
+                    <ListItemAvatar>
+                    <img alt={data.name} src={data.photo}/>
                         
-                        );
-                    })}
+                    </ListItemAvatar>
+                    <ListItemText
+                        primary={data.name}
+                        secondary={
+                            <React.Fragment>
+                            <Typography
+                                sx={{ display: 'inline' }}
+                                component="span"
+                                variant="body2"
+                                color="text.primary"
+                            >
+                            </Typography>
+                            {data.phone}
+                            <br/>
+                            {data.email}
+                            </React.Fragment>
+                        }
+                    />
+                </ListItem>
+                <Divider variant="inset" component="li" />
                 </List>
         </Paper>
         

@@ -9,12 +9,19 @@ import {TextField,Button} from '@mui/material';
 const ContactForm = ({clickHandler}) => {
     // Form berisi name, phone, email, dan photo url
     // Buatlah state newContact berupa objek sesuai dengan data yang ada
-    const [data, setData] = useState([]);
     const [ name, setName ] = useState("");
     const [ phone, setPhone ] = useState("");
     const [ email, setEmail ] = useState("");
-    const [ photoUrl, setPhotoUrl ] = useState("");
+    const [ photos, setPhotos ] = useState("");
 
+    const handleSUbmit =() =>{
+        clickHandler({
+            name : name,
+            phone : phone,
+            email : email,
+            photos : photos
+        })
+    }
     return (
         <>
         <div className='cfrom'>
@@ -22,6 +29,7 @@ const ContactForm = ({clickHandler}) => {
             <div className='cfrom-ipt'>
                 <TextField
                     required
+                    id='name'
                     label="Name"
                     value={name}
                     onChange={(e) => {
@@ -34,7 +42,7 @@ const ContactForm = ({clickHandler}) => {
             <div className='cfrom-ipt'>
                 <TextField
                     required
-                    id="outlined-required"
+                    id="phone"
                     type="tel"
                     label="Phone"
                     value={phone}
@@ -48,7 +56,7 @@ const ContactForm = ({clickHandler}) => {
             <div className='cfrom-ipt'>
                 <TextField
                     required
-                    id="outlined-required"
+                    id="email"
                     label="Email"
                     value={email}
                     onChange={(e) => {
@@ -61,12 +69,12 @@ const ContactForm = ({clickHandler}) => {
             <div className='cfrom-ipt'>
                 <TextField
                     required
-                    id="outlined-required"
+                    id="photos"
                     label="Photo URL"
                     type="url"
-                    value={photoUrl}
+                    value={photos}
                     onChange={(e) => {
-                        setPhotoUrl(e.target.value);
+                        setPhotos(e.target.value);
                       }}
                     sx={{ width: '100%'}}
                 />
@@ -77,17 +85,7 @@ const ContactForm = ({clickHandler}) => {
                     variant="outlined" 
                     color="success" 
                     sx={{ width: '100%'}}
-                    onClick={() => {
-                        setData({
-                            name: name,
-                            phone: phone,
-                            email: email,
-                            photo: photoUrl
-                        })
-                        console.log(data)
-                        clickHandler(data)
-                        // setTodo('');
-                    }}
+                    onClick={handleSUbmit}
                 >
                     ADD NEW
                 </Button>

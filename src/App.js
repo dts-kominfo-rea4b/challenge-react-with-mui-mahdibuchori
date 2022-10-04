@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 // Uncomment untuk memuat daftar kontak
 import contactsJSON from './data/contacts.json';
+import { TabScrollButton } from '@mui/material';
 const App = () => {
   // Masukkan Header dan lakukan map untuk Contact ke dalam div App
   // untuk membuat daftar kontak bisa menggunakan MUI list
@@ -18,15 +19,10 @@ const App = () => {
   // Masukkan contacts yang sudah didapat dalam JSON sebagai initial state
   // Buatlah handler untuk menambahkan kontak baru yang akan dikirim ke ContactForm
   
-  const [ files, setFiles ] = useState(contactsJSON);
+  const [ data, setData ] = useState(contactsJSON);
   
   const clickHandler =(isi) =>{
-    if(isi.length !== 0){
-      setFiles([...files, isi]);
-    }
-    else{
-    console.log(isi.length);
-    }
+    setData([...data, isi]);
     // 
 
   }
@@ -42,7 +38,11 @@ const App = () => {
               <ContactForm clickHandler={clickHandler}/>
             </Grid>
             <Grid xs>
-              <Contact data={files}/>
+            {
+              data.map((contacts, index) =>(
+                <Contact key={index} data={contacts}/>
+              ))
+            }
               
             </Grid>
           </Grid>
